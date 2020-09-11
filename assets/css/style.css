@@ -11,6 +11,37 @@ body{
     width: 50%;
     margin-top: 120px;
 }
+.h1{
+    margin-left: 30px;
+}
+.h3{
+    margin-left: 30px;
+}
 .labels{
-    padding: 20px;
+    margin-left: 30px;
+}
+.datelabel{
+    margin-left: 30px;
+    padding-right: 40px;
+}
+.phonelabel{
+    margin-left: 10px;
+}
+.commentlabel{
+    margin-left: 30px;
+    padding-right: 10px;
+}
+.tbl{
+    background:white;
+    margin: auto;
+    width: 50%;
+    margin-top: 30px;;
+}
+.tbl, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
 }
