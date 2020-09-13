@@ -1,7 +1,6 @@
 body{
     background-image: url('../images/background1.png');
     background-size: cover;
-
 }
 .formdiv{
     font-family: '"Trebuchet MS", Helvetica, sans-serif';
@@ -9,27 +8,12 @@ body{
     background: rgb(30, 154, 192);
     margin: auto;
     width: 50%;
-    margin-top: 120px;
+    margin-top: 5%;
+    padding: 30px;
+
 }
-.h1{
-    margin-left: 30px;
-}
-.h3{
-    margin-left: 30px;
-}
-.labels{
-    margin-left: 30px;
-}
-.datelabel{
-    margin-left: 30px;
-    padding-right: 40px;
-}
-.phonelabel{
-    margin-left: 10px;
-}
-.commentlabel{
-    margin-left: 30px;
-    padding-right: 10px;
+.gr1{
+    margin-top: auto;
 }
 .tbl{
     background:white;
