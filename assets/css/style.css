@@ -5,8 +5,7 @@ body{
 .cont{
     font-family: '"Trebuchet MS", Helvetica, sans-serif';
     color: white;
-    background: rgb(30, 154, 192, 0.2);
-    /* padding: 20px; */
+    background: rgb(30, 154, 192, 0.2);  
 }
 .frow{
     margin: auto;
