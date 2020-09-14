@@ -2,18 +2,22 @@ body{
     background-image: url('../images/background1.png');
     background-size: cover;
 }
-.formdiv{
+.cont{
     font-family: '"Trebuchet MS", Helvetica, sans-serif';
     color: white;
-    background: rgb(30, 154, 192);
-    margin: auto;
-    width: 50%;
-    margin-top: 5%;
-    padding: 30px;
-
+    background: rgb(30, 154, 192, 0.2);
+    /* padding: 20px; */
 }
-.gr1{
-    margin-top: auto;
+.frow{
+    margin: auto;
+    max-width: 500px;
+}
+.h1{
+    padding: 20px;
+}
+.h5{
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
 .tbl{
     background:white;
