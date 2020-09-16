@@ -18,7 +18,19 @@ body{
     padding-left: 20px;
     padding-bottom: 10px;
 }
-.tbl{
+
+/* ----------LOGIN FORM CSS--------------- */
+.cont1{
+    font-family: '"Trebuchet MS", Helvetica, sans-serif';
+    color: white;
+    background: rgb(30, 154, 192, 0.2); 
+    margin-top: 10%;
+}
+.loginrow{
+    justify-content: center;
+}
+
+/* .tbl{
     background:white;
     margin: auto;
     width: 50%;
@@ -31,4 +43,4 @@ body{
 th, td {
   padding: 5px;
   text-align: left;    
-}
+} */
