@@ -1,30 +1,34 @@
 <?php
-$conn = mysqli_connect("test.loc", "root", "", "logindb");
-if (!$conn) {
-	die('Could not connect');
-}
-if (isset($_POST['submitbtn'])) {
-	$name = $_POST['name'];
-	$sname = $_POST['surname'];
-	$mail = $_POST['mail'];
-	$password = $_POST['password'];
-	$date = $_POST['date'];
-	$phone = $_POST['phone'];
-	$message = $_POST['message'];
-	$gender = $_POST['gender'];
+$conn = mysqli_connect("localhost", "root", "root", "logindb");
+// $conn = mysqli_connect("test.loc", "root", "", "logindb");
 
-	$sql = "INSERT INTO login_tbl (Name, Surname, Email, Password, Date, Phone, Message, Gender)
-	VALUES ($name, $sname, $mail, $password, $date, $phone, $message, $gender)";
+if ($conn) {
+	// echo 'Connected successfully';
 
-	if (mysqli_query($conn, $sql)) {
-		echo "New record created successfully";
-	} else {
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	if (isset($_POST['submitbtn'])) {
+		$name = $_POST['name'];
+		$sname = $_POST['surname'];
+		$mail = $_POST['mail'];
+		$password = $_POST['password'];
+		$date = $_POST['date'];
+		$phone = $_POST['phone'];
+		$message = $_POST['message'];
+		$gender = $_POST['gender'];
+
+		$sql = "INSERT INTO login_tbl (Name, Surname, Email, Password, Date, Phone, Message, Gender)
+	VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
+
+		if (mysqli_query($conn, $sql)) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+
+		mysqli_close($conn);
 	}
-
-	mysqli_close($conn);
+} else {
+	die('Connection error');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +44,7 @@ if (isset($_POST['submitbtn'])) {
 <body>
 	<div class="container cont">
 		<div class="row justify-content-center">
-			<form method="post" action="index.php">
+			<form method="post">
 				<div class="col">
 					<h1 class="h1">Contact form</h1>
 				</div>
@@ -99,6 +103,11 @@ if (isset($_POST['submitbtn'])) {
 					</div>
 				</div>
 				<button type="submit" name="submitbtn" class="btn btn-success">Submit</button>
+				<button type="submit" name="login" class="btn btn-success">
+					<a href="/php-form/index.php">Log In</a>
+				</button>
+
+
 			</form>
 		</div>
 	</div>
