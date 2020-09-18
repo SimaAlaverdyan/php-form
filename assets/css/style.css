@@ -29,7 +29,10 @@ body{
 .loginrow{
     justify-content: center;
 }
-
+.log_a{
+    text-decoration: none;
+    color: white;
+}
 /* .tbl{
     background:white;
     margin: auto;

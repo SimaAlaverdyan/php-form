@@ -1,10 +1,8 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "root", "logindb");
-// $conn = mysqli_connect("test.loc", "root", "", "logindb");
+// $conn = mysqli_connect("localhost", "root", "root", "logindb");
+$conn = mysqli_connect("test.loc", "root", "", "logindb");
 
 if ($conn) {
-	// echo 'Connected successfully';
-
 	if (isset($_POST['submitbtn'])) {
 		$name = $_POST['name'];
 		$sname = $_POST['surname'];
@@ -15,18 +13,20 @@ if ($conn) {
 		$message = $_POST['message'];
 		$gender = $_POST['gender'];
 
-		$sql = "INSERT INTO login_tbl (Name, Surname, Email, Password, Date, Phone, Message, Gender)
-	VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
-
-		if (mysqli_query($conn, $sql)) {
-			echo "New record created successfully";
+		if (!empty($name) and !empty($sname) and !empty($mail) and !empty($password)) {
+			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender)
+				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
+			if (mysqli_query($conn, $sql)) {
+				echo "<script>alert('New record created successfully')</script>";
+			}
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			// echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			echo "<script>alert('Fields cannot be empty')</script>";
 		}
-
 		mysqli_close($conn);
 	}
 } else {
+	// echo "<script>alert('Something went wrong')</script>";
 	die('Connection error');
 }
 ?>
@@ -36,8 +36,8 @@ if ($conn) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/assets/css/style.css">
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/form/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/form/assets/css/style.css">
 	<title>Create Your Account</title>
 </head>
 
@@ -98,16 +98,14 @@ if ($conn) {
 						<label>Gender</label>
 					</div>
 					<div class="form-group col-md-3">
-						<label>Male <input type="radio" name="gender" value="male"></label>
+						<label>Male <input type="radio" name="gender" value="male" checked="checked"></label>
 						<label>Female <input type="radio" name="gender" value="female"></label>
 					</div>
 				</div>
 				<button type="submit" name="submitbtn" class="btn btn-success">Submit</button>
-				<button type="submit" name="login" class="btn btn-success">
-					<a href="/php-form/index.php">Log In</a>
+				<button type="submit" name="login" class="btn btn-primary">
+					<a href="/form/index.php" class="log_a">Log In</a>
 				</button>
-
-
 			</form>
 		</div>
 	</div>
