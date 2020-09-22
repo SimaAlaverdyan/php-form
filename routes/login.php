@@ -7,12 +7,13 @@ if ($conn) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM users WHERE email = '$email' and password = '$password'";
+		$hashPassword = md5($_POST['password']);
 
+		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 
-		if (!empty($email) and !empty($password) and $row['email'] == $email and $row['password'] == $password) {
+		if (!empty($email) and !empty($password) and $row['email'] == $email and $row['password'] == $hashPassword) {
 			include('profile.php');
 		} else {
 			// echo "<script>alert('Incorrect Email or Password')</script>";

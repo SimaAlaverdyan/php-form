@@ -12,10 +12,14 @@ if ($conn) {
 		$phone = $_POST['phone'];
 		$message = $_POST['message'];
 		$gender = $_POST['gender'];
+		$avatar = '../assets/images/' . $_FILES['avatar']['name'] . time();
 
 		if (!empty($name) and !empty($sname) and !empty($mail) and !empty($password)) {
-			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender)
-				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
+
+			$password = md5($_POST['password']);
+
+			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender, image)
+				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender', '$avatar')";
 			if (mysqli_query($conn, $sql)) {
 				echo "<script>alert('New record created successfully')</script>";
 			}
@@ -36,15 +40,15 @@ if ($conn) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/form/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/form/assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
 	<title>Create Your Account</title>
 </head>
 
 <body>
 	<div class="container cont">
 		<div class="row justify-content-center">
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 				<div class="col">
 					<h1 class="h1">Contact form</h1>
 				</div>
@@ -86,7 +90,7 @@ if ($conn) {
 					</div>
 					<div class="form-group col-md-3">
 						<label>Phone </label>
-						<input type="text" class="form-control" name="phone" placeholder="### ### ###">
+						<input type="text" class="form-control" name="phone" maxlength="8" placeholder="## ### ###" >
 					</div>
 				</div>
 				<div class="form-group">
@@ -100,6 +104,9 @@ if ($conn) {
 					<div class="form-group col-md-3">
 						<label>Male <input type="radio" name="gender" value="male" checked="checked"></label>
 						<label>Female <input type="radio" name="gender" value="female"></label>
+					</div>
+					<div class="form-group col-md-5">
+						<input type="file" name="avatar">
 					</div>
 				</div>
 				<button type="submit" name="submitbtn" class="btn btn-success">Submit</button>
