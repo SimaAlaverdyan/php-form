@@ -12,14 +12,14 @@ if ($conn) {
 		$phone = $_POST['phone'];
 		$message = $_POST['message'];
 		$gender = $_POST['gender'];
-		$avatar = '../assets/images/' . $_FILES['avatar']['name'] . time();
+		// $avatar = '../assets/images/' . $_FILES['avatar']['name'] . time();
 
 		if (!empty($name) and !empty($sname) and !empty($mail) and !empty($password)) {
 
 			$password = md5($_POST['password']);
 
-			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender, image)
-				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender', '$avatar')";
+			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender)
+				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
 			if (mysqli_query($conn, $sql)) {
 				echo "<script>alert('New record created successfully')</script>";
 			}
@@ -48,7 +48,7 @@ if ($conn) {
 <body>
 	<div class="container cont">
 		<div class="row justify-content-center">
-			<form method="post" enctype="multipart/form-data">
+			<form method="post">
 				<div class="col">
 					<h1 class="h1">Contact form</h1>
 				</div>
@@ -105,9 +105,7 @@ if ($conn) {
 						<label>Male <input type="radio" name="gender" value="male" checked="checked"></label>
 						<label>Female <input type="radio" name="gender" value="female"></label>
 					</div>
-					<div class="form-group col-md-5">
-						<input type="file" name="avatar">
-					</div>
+					
 				</div>
 				<button type="submit" name="submitbtn" class="btn btn-success">Submit</button>
 				<button type="submit" name="login" class="btn btn-primary">

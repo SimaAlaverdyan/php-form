@@ -25,6 +25,7 @@ body{
     color: white;
     background: rgb(30, 154, 192, 0.2); 
     margin-top: 10%;
+    padding: 50px;
 }
 .loginrow{
     justify-content: center;
@@ -47,3 +48,44 @@ th, td {
   padding: 5px;
   text-align: left;    
 } */
+
+/* -----------welcome.php----------- */
+.row1{
+    background-color: #fff;
+}
+.menu{
+    display: flex;
+    margin: 20px;
+}
+.menu li{
+    list-style-type: none;
+    margin: 20px;
+}
+.user{
+    margin: 20px;
+    float: left;
+}
+.user img{
+    border-radius: 50%;
+    height: 60px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+}  
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+.dropdown-content a {
+    padding: 5px;
+}
+
+/* -----------profile.php----------- */
+.profilecont{
+    background-color: rgb(231, 209, 168, 0.2);
+}

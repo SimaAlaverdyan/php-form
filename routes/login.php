@@ -14,7 +14,7 @@ if ($conn) {
 		$row = mysqli_fetch_assoc($result);
 
 		if (!empty($email) and !empty($password) and $row['email'] == $email and $row['password'] == $hashPassword) {
-			include('profile.php');
+			include('welcome.php');
 		} else {
 			// echo "<script>alert('Incorrect Email or Password')</script>";
 			// header('Location: http://test.loc/form/');
