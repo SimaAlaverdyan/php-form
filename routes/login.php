@@ -12,9 +12,11 @@ if ($conn) {
 		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
+		$id = $row['id'];
 
 		if (!empty($email) and !empty($password) and $row['email'] == $email and $row['password'] == $hashPassword) {
-			include('welcome.php');
+			// include("welcome.php");
+			header("Location: http://test.loc/form/routes/welcome.php?id={$id}");
 		} else {
 			// echo "<script>alert('Incorrect Email or Password')</script>";
 			// header('Location: http://test.loc/form/');
@@ -25,3 +27,4 @@ if ($conn) {
 } else {
 	die('Connection error');
 }
+mysqli_close($conn);

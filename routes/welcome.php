@@ -1,3 +1,16 @@
+<?php
+$conn = mysqli_connect("test.loc", "root", "", "logindb");
+
+if ($conn) {
+	$id = $_GET['id'];
+	$sql = "SELECT * FROM users WHERE id = '$id'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+} else {
+	echo "connection error";
+}
+mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +26,8 @@
 			color: wheat;
 			margin-top: 30px;
 		}
-		h3{
+
+		h3 {
 			text-align: center;
 			color: indianred;
 		}
@@ -22,35 +36,18 @@
 
 <body>
 	<div class="container">
-		<div class="row justify-content-between row1">
-			<div class="menudiv">
-				<ul class="menu">
-					<li><a href="welcome.php">menu</a></li>
-					<li><a href="welcome.php">menu</a></li>
-					<li><a href="welcome.php">menu</a></li>
-					<li><a href="welcome.php">menu</a></li>
-				</ul>
-			</div>
-			<div class="dropdown user">
-				<a href="profile.php"><img src="<?php echo $row['image'] ?>"></a>
-				<div class="dropdown-content">
-					<a href="profile.php?id=<?php echo $row['id']?>">Profile</a>
-					<a href="profile.php">Settings</a>
-					<a href="/form/index.php">LogOut</a>
-				</div>
-			</div>
-		</div>
+		<?php include 'menu.php'; ?>
+		<h1>Welcome!</h1>
+		<h3>
+			<?php
+			echo $row['name'] . " " . $row['surname'];
+			?>
+		</h3>
+		<?php
+		// $img = substr($row['image'], 0, -10);
+		// echo "<img src='$img' class='img'>";
+		?>
 	</div>
-	<h1>Welcome!</h1>
-	<h3>
-	<?php
-	echo $row['name'] . " " . $row['surname'];
-	?>
-	</h3>
-	<?php
-	// $img = substr($row['image'], 0, -10);
-	// echo "<img src='$img' class='img'>";
-	?>
 </body>
 
 </html>
