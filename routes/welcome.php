@@ -33,10 +33,14 @@ mysqli_close($conn);
 		}
 	</style>
 </head>
-
+<script>
+    window.history.forward();
+</script>
 <body>
-	<div class="container">
-		<?php include 'menu.php'; ?>
+	<div class="container ">
+		<?php 
+		include 'menu.php'; 
+		?>
 		<h1>Welcome!</h1>
 		<h3>
 			<?php

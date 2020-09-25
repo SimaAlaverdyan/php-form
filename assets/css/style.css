@@ -88,21 +88,22 @@ th, td {
 
 /* -----------profile.php----------- */
 .profilecont{
-    background-color: rgb(231, 209, 168, 0.5);
+    background-color: rgb(30, 154, 192, 0.5);
 }
 .profileh1{
     margin-top: 10%;
-    color: rgb(200,120,124);
+    color: rgb(209, 90, 96);
 }
 .imagegroup{
-    padding: 20px;
+    padding: 40px;
+}
+.imagegroup h2{
+    padding-top: 20px;
+    padding-left: 20px;
 }
 .imagegroup img {
     height: 200px;
     border-radius: 50%;
-}
-.imagegroup h2{
-    text-align: center;
 }
 .btnrow{
     margin-left: 75%;

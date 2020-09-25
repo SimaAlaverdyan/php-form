@@ -12,7 +12,7 @@
         <div class="dropdown-content">
             <a href="profile.php?id=<?php echo $row['id'] ?>">Profile</a>
             <a href="profile.php?id=<?php echo $row['id'] ?>">Settings</a>
-            <a href="/form/index.php">LogOut</a>
+            <a href="../index.php">LogOut</a>
         </div>
     </div>
 </div>

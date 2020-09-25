@@ -8,7 +8,9 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<title>Login In Or Sign Up</title>
 </head>
-
+<script>
+    window.history.forward();
+</script>
 <body>
 	<div class="container cont1">
 		<div class="row loginrow">
