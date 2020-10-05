@@ -15,8 +15,8 @@ if ($conn) {
 		$id = $row['id'];
 
 		if (!empty($email) and !empty($password) and $row['email'] == $email and $row['password'] == $hashPassword) {
-			// include("welcome.php");
-			header("Location: http://test.loc/form/routes/welcome.php?id={$id}");
+			// include("news.php");
+			header("Location: http://test.loc/form/routes/news.php?id={$id}");
 		} else {
 			// echo "<script>alert('Incorrect Email or Password')</script>";
 			// header('Location: http://test.loc/form/');

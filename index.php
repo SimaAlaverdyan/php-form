@@ -13,7 +13,7 @@
 </script>
 <body>
 	<div class="container cont1">
-		<div class="row loginrow">
+		<div class="row justify-content-center">
 			<form method="post" action="routes/login.php">
 				<div class="form-group">
 					<label>Login Or Email</label>

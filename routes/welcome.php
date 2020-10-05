@@ -47,10 +47,6 @@ mysqli_close($conn);
 			echo $row['name'] . " " . $row['surname'];
 			?>
 		</h3>
-		<?php
-		// $img = substr($row['image'], 0, -10);
-		// echo "<img src='$img' class='img'>";
-		?>
 	</div>
 </body>
 

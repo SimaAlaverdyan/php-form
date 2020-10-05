@@ -14,11 +14,6 @@ if ($conn) {
     $date = $row['date'];
     $phone = $row['phone'];
     $message = $row['message'];
-    // $gender = $row['gender'];
-
-    // if (isset($_POST['removebtn'])) {
-    //     $newimage = 'avatar.png';
-    // }
 
     if (isset($_POST['updatebtn'])) {
         $newimage = $_FILES['avatar']['name'];
@@ -28,7 +23,6 @@ if ($conn) {
         $newDate = $_POST['date'];
         $newPhone = $_POST['phone'];
         $newMessage = $_POST['message'];
-        // $newgender = $_POST['gender'];
 
         if (empty($newimage)) {
             $newimage = $image;
@@ -82,7 +76,9 @@ mysqli_close($conn);
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Profile Page</title>
 </head>
-
+<script>
+    window.history.forward();
+</script>
 <body>
     <div class="container profilecont">
         <?php
@@ -94,15 +90,12 @@ mysqli_close($conn);
                     <div class="form-group col-md-4 imagegroup">
                         <img src=<?php echo '../assets/images/' . $row['image'] ?> class="img">
                         <input type="file" name="avatar">
-                        <h2>
-                            <?php echo $name, " ", $sname; ?>
-                        </h2>
                     </div>
+                    <h2 class="profileh2">
+                        <?php echo $name, " ", $sname; ?>
+                    </h2>
                 </div>
                 <div class="col-md-8">
-                    <!-- <div class="row">
-                        <button type="submit" name="removebtn">Remove Image</button>  
-                    </div> -->
                     <div class="row justify-content-center">
                         <div class="form-group col-md-12">
                             <h1 class="profileh1">Your Profile</h1>

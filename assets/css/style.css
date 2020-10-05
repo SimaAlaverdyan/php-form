@@ -28,9 +28,9 @@ body{
     margin-top: 10%;
     padding: 50px;
 }
-.loginrow{
+/* .loginrow{
     justify-content: center;
-}
+} */
 .log_a{
     text-decoration: none;
     color: white;
@@ -50,7 +50,7 @@ th, td {
   text-align: left;    
 } */
 
-/* -----------welcome.php----------- */
+/* -----------menu.php----------- */
 .row1{
     background-color: #fff;
 }
@@ -70,25 +70,10 @@ th, td {
     border-radius: 50%;
     height: 70px;
 }
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-}  
-.dropdown:hover .dropdown-content{
-    display: block;
-}
-.dropdown-content a {
-    padding: 15px;
-}
 
 /* -----------profile.php----------- */
 .profilecont{
-    background-color: rgb(30, 154, 192, 0.5);
+    background-color: rgb(30, 154, 192, 0.8);
 }
 .profileh1{
     margin-top: 10%;
@@ -97,9 +82,12 @@ th, td {
 .imagegroup{
     padding: 40px;
 }
-.imagegroup h2{
+/* .imagegroup h2{
     padding-top: 20px;
     padding-left: 20px;
+} */
+.profileh2{
+    margin-left: 50px;
 }
 .imagegroup img {
     height: 200px;
@@ -108,4 +96,14 @@ th, td {
 .btnrow{
     margin-left: 75%;
     padding: 20px;
+}
+
+/* -------------news.php------------ */
+.cont2{
+    background-color: whitesmoke;
+}
+
+/* -------posts.php---------- */
+.postrow{
+    padding: 30px;
 }
