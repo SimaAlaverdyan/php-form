@@ -1,70 +1,64 @@
 <?php
-$conn = mysqli_connect("test.loc", "root", "", "logindb");
+include 'connection.php';
 
 $id = $_GET['id'];
 $sql = "SELECT * FROM users WHERE id = '$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
-if ($conn) {
-    $image = $row['image'];
-    $name = $row['name'];
-    $sname = $row['surname'];
-    $email = $row['email'];
-    $date = $row['date'];
-    $phone = $row['phone'];
-    $message = $row['message'];
+$image = $row['image'];
+$name = $row['name'];
+$sname = $row['surname'];
+$email = $row['email'];
+$date = $row['date'];
+$phone = $row['phone'];
+$message = $row['message'];
 
-    if (isset($_POST['updatebtn'])) {
-        $newimage = $_FILES['avatar']['name'];
-        $newName = $_POST['name'];
-        $newSname = $_POST['surname'];
-        $newEmail = $_POST['email'];
-        $newDate = $_POST['date'];
-        $newPhone = $_POST['phone'];
-        $newMessage = $_POST['message'];
+if (isset($_POST['updatebtn'])) {
+    $newimage = $_FILES['avatar']['name'];
+    $newName = $_POST['name'];
+    $newSname = $_POST['surname'];
+    $newEmail = $_POST['email'];
+    $newDate = $_POST['date'];
+    $newPhone = $_POST['phone'];
+    $newMessage = $_POST['message'];
 
-        if (empty($newimage)) {
-            $newimage = $image;
-        }
-        if (empty($newName)) {
-            $newName = $name;
-        }
-        if (empty($newSname)) {
-            $newSname = $sname;
-        }
-        if (empty($newEmail)) {
-            $newEmail = $email;
-        }
-        if (empty($newDate)) {
-            $newDate = $date;
-        }
-        if (empty($newPhone)) {
-            $newPhone = $phone;
-        }
-        if (empty($newMessage)) {
-            $newMessage = $message;
-        }
+    if (empty($newimage)) {
+        $newimage = $image;
+    }
+    if (empty($newName)) {
+        $newName = $name;
+    }
+    if (empty($newSname)) {
+        $newSname = $sname;
+    }
+    if (empty($newEmail)) {
+        $newEmail = $email;
+    }
+    if (empty($newDate)) {
+        $newDate = $date;
+    }
+    if (empty($newPhone)) {
+        $newPhone = $phone;
+    }
+    if (empty($newMessage)) {
+        $newMessage = $message;
+    }
 
-        if (
-            !empty($newimage) || !empty($newName) || !empty($newSname) || !empty($newEmail)
-            || !empty($newDate) || !empty($newPhone) || !empty($newMessage)
-        ) {
-            $sql1 = "UPDATE users SET name = '$newName', surname = '$newSname',
+    if (
+        !empty($newimage) || !empty($newName) || !empty($newSname) || !empty($newEmail)
+        || !empty($newDate) || !empty($newPhone) || !empty($newMessage)
+    ) {
+        $sql1 = "UPDATE users SET name = '$newName', surname = '$newSname',
                                 email = '$newEmail', date = '$newDate', phone = '$newPhone',
                                 message = '$newMessage', image = '$newimage' 
                 WHERE id = '$id'";
-            if (mysqli_query($conn, $sql1)) {
-                echo "<script>alert('updated')</script>";
-                header("Location: http://test.loc/form/routes/profile.php?id={$id}");
-            }
+        if (mysqli_query($conn, $sql1)) {
+            echo "<script>alert('updated')</script>";
+            header("Location: http://test.loc/form/routes/profile.php?id={$id}");
         }
     }
-} else {
-    echo "Connection Error";
 }
-
-mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +73,7 @@ mysqli_close($conn);
 <script>
     window.history.forward();
 </script>
+
 <body>
     <div class="container profilecont">
         <?php

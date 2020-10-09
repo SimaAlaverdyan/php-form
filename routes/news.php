@@ -1,21 +1,22 @@
 <?php
-$conn = mysqli_connect("test.loc", "root", "", "logindb");
+include 'connection.php';
 
-if ($conn) {
-	$id = $_GET['id'];
-	$sql = "SELECT * FROM users WHERE id = '$id'";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_assoc($result);
+$id = $_GET['id'];
+$sql = "SELECT * FROM users WHERE id = '$id'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 
-	$sql1 = "SELECT * FROM posts";
-	$result1 = mysqli_query($conn, $sql1);
-} else {
-	echo "connection error";
-}
+//selecting all posts
+$sql1 = "SELECT * FROM posts JOIN users ON posts.user_id = users.id";
+$result1 = mysqli_query($conn, $sql1);
+
+$sql2 = "SELECT id FROM posts";
+$result2 = mysqli_query($conn, $sql2);
+
 if (isset($_POST['createbtn'])) {
 	header("Location: http://test.loc/form/routes/posts.php?id={$id}");
 }
-mysqli_close($conn);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +35,6 @@ mysqli_close($conn);
 		}
 	</style>
 </head>
-<script>
-	window.history.forward();
-</script>
 
 <body>
 	<div class="container cont2">
@@ -47,6 +45,14 @@ mysqli_close($conn);
 			<h1>Recent Posts</h1>
 			<?php
 			while ($row1 = mysqli_fetch_assoc($result1)) {
+				while ($row2 = mysqli_fetch_assoc($result2)) {
+					$post_id = $row2['id'];
+					echo $post_id;
+
+					if (isset($_POST['commentbtn'])) {
+						header("Location: http://test.loc/form/routes/comment.php?id={$post_id}");
+					}
+				}
 			?>
 				<div class="row justify-content-center">
 					<div class="row col-md-3">
@@ -56,8 +62,11 @@ mysqli_close($conn);
 						<div class="form-group">
 							<h2><?php echo $row1['title'] ?></h2>
 							<h5><?php echo $row1['content'] ?></h5>
-							<p><?php echo $row1['firstname'] . " " . $row1['lastname'] ?></p>
+							<p><?php echo $row1['name'] . " " . $row1['surname'] ?></p>
 							<p><?php echo $row1['date'] ?></p>
+						</div>
+						<div class="form-group col-md-9">
+							<button type="submit" name="commentbtn" class="btn btn-success">Comment</button>
 						</div>
 					</div>
 				</div>

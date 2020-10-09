@@ -1,36 +1,35 @@
 <?php
-$conn = mysqli_connect("test.loc", "root", "", "logindb");
+include 'connection.php';
 
-if ($conn) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM users WHERE id = '$id'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
+$id = $_GET['id'];
+$sql = "SELECT * FROM users WHERE id = '$id'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 
-    if (isset($_POST['backbtn'])) {
-        header("Location: http://test.loc/form/routes/news.php?id={$id} ");
-    }
-    if (isset($_POST['savebtn'])) {
-        if (!empty($row['name']) and !empty($row['surname'])) {
-            $fname = $row['name'];
-            $sname = $row['surname'];
-            $img = $row['image'];
-            $postTitle = $_POST['title'];
-            $postContenct = $_POST['content'];
-            $postDate = date("Y.m.d");
+if (isset($_POST['backbtn'])) {
+    header("Location: http://test.loc/form/routes/news.php?id={$id} ");
+}
+if (isset($_POST['savebtn'])) {
+    if (!empty($row['name']) and !empty($row['surname'])) {
+        // $fname = $row['name'];
+        // $sname = $row['surname'];
+        // $img = $row['image'];
+        $userid = $row['id'];
+        $postTitle = $_POST['title'];
+        $postContenct = $_POST['content'];
+        $postDate = date("Y.m.d");
 
-            $sql1 = "INSERT INTO posts (firstname, lastname, image, title, content, date)
-            VALUES ('$fname', '$sname', '$img', '$postTitle', '$postContenct', '$postDate')";
+        $sql1 = "INSERT INTO posts (user_id, title, content, date)
+            VALUES ('$userid', '$postTitle', '$postContenct', '$postDate')";
 
-            if (mysqli_query($conn, $sql1)) {
-                echo "<script>alert('New record created successfully')</script>";
-            }
-        } else {
-            echo "<script>alert('Fields cannot be empty')</script>";
+        if (mysqli_query($conn, $sql1)) {
+            echo "<script>alert('New record created successfully')</script>";
+            header("Location: http://test.loc/form/routes/news.php?id={$id} ");
         }
+    } else {
+        echo "<script>alert('Fields cannot be empty')</script>";
     }
 }
-mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">

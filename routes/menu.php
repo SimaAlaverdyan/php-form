@@ -9,11 +9,5 @@
     </div>
     <div class="user">
         <a href="profile.php?id=<?php echo $row['id'] ?>"><img src="<?php echo '/form/assets/images/' . $row['image'] ?>"></a>
-        <!-- '../assets/images/' -->
-        <!-- <div class="dropdown-content">
-            <a href="profile.php?id=">Profile</a>
-            <a href="profile.php?id=">Settings</a>
-            <a href="../index.php">LogOut</a>
-        </div> -->
     </div>
 </div>

@@ -1,37 +1,30 @@
 <?php
-// $conn = mysqli_connect("localhost", "root", "root", "logindb");
-$conn = mysqli_connect("test.loc", "root", "", "logindb");
+include 'connection.php';
 
-if ($conn) {
-	if (isset($_POST['submitbtn'])) {
-		$name = $_POST['name'];
-		$sname = $_POST['surname'];
-		$mail = $_POST['mail'];
-		$password = $_POST['password'];
-		$date = $_POST['date'];
-		$phone = $_POST['phone'];
-		$message = $_POST['message'];
-		$gender = $_POST['gender'];
-		// $avatar = '../assets/images/' . $_FILES['avatar']['name'] . time();
+if (isset($_POST['submitbtn'])) {
+	$name = $_POST['name'];
+	$sname = $_POST['surname'];
+	$mail = $_POST['mail'];
+	$password = $_POST['password'];
+	$date = $_POST['date'];
+	$phone = $_POST['phone'];
+	$message = $_POST['message'];
+	$gender = $_POST['gender'];
+	// $avatar = '../assets/images/' . $_FILES['avatar']['name'] . time();
 
-		if (!empty($name) and !empty($sname) and !empty($mail) and !empty($password)) {
+	if (!empty($name) and !empty($sname) and !empty($mail) and !empty($password)) {
 
-			$password = md5($_POST['password']);
+		$password = md5($_POST['password']);
 
-			$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender)
+		$sql = "INSERT INTO users (name, surname, email, password, date, phone, message, gender)
 				VALUES ('$name', '$sname', '$mail', '$password', '$date', '$phone', '$message', '$gender')";
-			if (mysqli_query($conn, $sql)) {
-				echo "<script>alert('New record created successfully')</script>";
-			}
-		} else {
-			// echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-			echo "<script>alert('Fields cannot be empty')</script>";
+		if (mysqli_query($conn, $sql)) {
+			echo "<script>alert('New record created successfully')</script>";
 		}
-		mysqli_close($conn);
+	} else {
+		echo "<script>alert('Fields cannot be empty')</script>";
 	}
-} else {
-	// echo "<script>alert('Something went wrong')</script>";
-	die('Connection error');
+	mysqli_close($conn);
 }
 ?>
 <!DOCTYPE html>
@@ -90,7 +83,7 @@ if ($conn) {
 					</div>
 					<div class="form-group col-md-3">
 						<label>Phone </label>
-						<input type="text" class="form-control" name="phone" maxlength="8" placeholder="## ### ###" >
+						<input type="text" class="form-control" name="phone" maxlength="8" placeholder="## ### ###">
 					</div>
 				</div>
 				<div class="form-group">
@@ -105,7 +98,7 @@ if ($conn) {
 						<label>Male <input type="radio" name="gender" value="male" checked="checked"></label>
 						<label>Female <input type="radio" name="gender" value="female"></label>
 					</div>
-					
+
 				</div>
 				<button type="submit" name="submitbtn" class="btn btn-success">Submit</button>
 				<button type="submit" name="login" class="btn btn-primary">
@@ -114,12 +107,6 @@ if ($conn) {
 			</form>
 		</div>
 	</div>
-	<?php
-	// if (isset($_POST['submit'])) {
-	// 	unset($_POST['submit']);
-	//include('routes/table.php');
-	// }
-	?>
 </body>
 
 </html>
