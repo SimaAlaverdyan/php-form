@@ -16,7 +16,9 @@ $result2 = mysqli_query($conn, $sql2);
 if (isset($_POST['createbtn'])) {
 	header("Location: http://test.loc/form/routes/posts.php?id={$id}");
 }
-
+if (isset($_POST['commentbtn'])) {
+	header("Location: http://test.loc/form/routes/comment.php?id={$_POST['commentbtn']}");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,14 +47,6 @@ if (isset($_POST['createbtn'])) {
 			<h1>Recent Posts</h1>
 			<?php
 			while ($row1 = mysqli_fetch_assoc($result1)) {
-				while ($row2 = mysqli_fetch_assoc($result2)) {
-					$post_id = $row2['id'];
-					echo $post_id;
-
-					if (isset($_POST['commentbtn'])) {
-						header("Location: http://test.loc/form/routes/comment.php?id={$post_id}");
-					}
-				}
 			?>
 				<div class="row justify-content-center">
 					<div class="row col-md-3">
@@ -66,7 +60,17 @@ if (isset($_POST['createbtn'])) {
 							<p><?php echo $row1['date'] ?></p>
 						</div>
 						<div class="form-group col-md-9">
-							<button type="submit" name="commentbtn" class="btn btn-success">Comment</button>
+							<!-- <button type="submit" name="commentbtn" id="" class="btn btn-success">
+									Comment
+								</button> -->
+							<?php
+							while ($row2 = mysqli_fetch_assoc($result2)) {
+							?>
+								<input type="submit" value="<?php echo $row2['id'] ?>" name="commentbtn">
+							<?php
+								break;
+							}
+							?>
 						</div>
 					</div>
 				</div>

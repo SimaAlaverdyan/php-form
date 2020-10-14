@@ -10,12 +10,12 @@ $sql2 = "SELECT * FROM posts";
 $result2 = mysqli_query($conn, $sql2);
 $row2 = mysqli_fetch_assoc($result2);
 
-$sql3 = "SELECT * FROM comments JOIN posts ON comments.post_id = posts.id";
+$sql3 = "SELECT * FROM comments JOIN posts ON comments.post_id = $id";
 $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 
-if (isset($_POST['commentbtn']) and !empty($_POST['comment'])) {
-    $post_id = $row3['id'];
+if (isset($_POST['combtn']) and !empty($_POST['comment'])) {
+    $post_id = $id;
     $user_id = $row['user_id'];
     $comment = $_POST['comment'];
 
@@ -48,7 +48,7 @@ if (isset($_POST['commentbtn']) and !empty($_POST['comment'])) {
         <form method="post">
             <div class="row justify-content-center">
                 <div class="row col-md-3">
-                    <img src="<?php echo '/form/assets/images/' . $row['image'] ?>" height="150px">
+                    <img src="<?php echo '/form/assets/images/' . $row3['image'] ?>" height="150px">
                 </div>
                 <div class="row col-md-4">
                     <div class="form-group">
@@ -63,17 +63,15 @@ if (isset($_POST['commentbtn']) and !empty($_POST['comment'])) {
                 <?php
                 while ($row3 = mysqli_fetch_assoc($result3)) {
                 ?>
-                    <!-- <form action="post"> -->
                     <img src="<?php echo '/form/assets/images/' . $row3['image'] ?>" height="50px">
                     <p><?php echo $row3['comment'] ?></p>
-                    <!-- </form> -->
                 <?php
                 }
                 ?>
             </div>
             <div class="row col-md-9 justify-content-center">
                 <input type="text" name="comment" size="60">
-                <button type="submit" name="commentbtn" class="btn btn-success">Add</button>
+                <button type="submit" name="combtn" class="btn btn-success">Add</button>
             </div>
         </form>
     </div>
