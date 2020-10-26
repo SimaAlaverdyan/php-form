@@ -17,7 +17,7 @@ if (isset($_POST['createbtn'])) {
 	header("Location: http://test.loc/form/routes/posts.php?id={$id}");
 }
 if (isset($_POST['commentbtn'])) {
-	header("Location: http://test.loc/form/routes/comment.php?id={$_POST['commentbtn']}");
+	header("Location: http://test.loc/form/routes/comment.php?id={$id}&buttonid={$_POST['commentbtn']}");
 }
 ?>
 <!DOCTYPE html>
