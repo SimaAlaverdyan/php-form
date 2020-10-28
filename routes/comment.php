@@ -11,12 +11,6 @@ $row = mysqli_fetch_assoc($result);
 //post's comments with user's description
 $sql1 = "SELECT * FROM comments JOIN users ON comments.user_id = users.id WHERE comments.post_id = $buttonID";
 $result1 = mysqli_query($conn, $sql1);
-$row1 = mysqli_fetch_assoc($result1);
-
-//corrent post's comments
-// $sql2 = "SELECT * FROM comments WHERE post_id = $buttonID";
-// $result2 = mysqli_query($conn, $sql2);
-// $row2 = mysqli_fetch_assoc($result2);
 
 //chosen post's description 
 $sql3 = "SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id = $buttonID";
@@ -24,8 +18,8 @@ $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 
 if (isset($_POST['combtn']) and !empty($_POST['comment'])) {
-    $post_id = $id;
-    $user_id = $row['user_id'];
+    $post_id = $buttonID;
+    $user_id = $id;
     $comment = $_POST['comment'];
 
     $sql4 = "INSERT INTO comments(post_id, user_id, comment)
@@ -33,6 +27,8 @@ if (isset($_POST['combtn']) and !empty($_POST['comment'])) {
 
     if (mysqli_query($conn, $sql4)) {
         echo "<script>alert('added')</script>";
+        header("Location: http://test.loc/form/routes/comment.php?id={$id}&buttonid={$buttonID}");
+        // echo "<script>window.location.reload();</script>";
     } else {
         echo "<script>alert('nooooo')</script>";
     }
@@ -47,6 +43,14 @@ if (isset($_POST['combtn']) and !empty($_POST['comment'])) {
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Comments</title>
+    <style>
+        .img{
+            margin: 20px;
+        }
+        .gr1{
+            margin: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,17 +73,21 @@ if (isset($_POST['combtn']) and !empty($_POST['comment'])) {
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <?php
-                while ($row1 = mysqli_fetch_assoc($result1)) {
-                ?>
-                    <img src="<?php echo '/form/assets/images/' . $row1['image'] ?>" height="50px">
-                    <p><?php echo $row1['comment'] ?></p>
-                <?php
-                }
-                ?>
-            </div>
-            <div class="row col-md-9 justify-content-center">
+            <!-- comments -->
+            <?php
+            while ($row1 = mysqli_fetch_assoc($result1)) {
+            ?>
+                <div class="row col-md-12 justify-content-center">
+                    <img src="<?php echo '/form/assets/images/' . $row1['image'] ?>" height="50px" class="img">
+                    <div class="form-group gr1">
+                        <h6><?php echo $row1['name'] . " " . $row1['surname'] ?></h6>
+                        <p><?php echo $row1['comment'] ?></p>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+            <div class="row col-md-!@ justify-content-center">
                 <input type="text" name="comment" size="60">
                 <button type="submit" name="combtn" class="btn btn-success">Add</button>
             </div>

@@ -65,8 +65,11 @@ if (isset($_POST['commentbtn'])) {
 								</button> -->
 							<?php
 							while ($row2 = mysqli_fetch_assoc($result2)) {
-							?>
-								<input type="submit" value="<?php echo $row2['id'] ?>" name="commentbtn">
+								?>
+								<input type="submit" name="commentbtn" value="<?php echo $row2['id'] ?>"/>
+								<!-- <button type="submit" name="commentbtn">Comment
+									<input type="hidden" name="postid" value="">
+								</button> -->
 							<?php
 								break;
 							}
